@@ -1,25 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
- 
-    public GameObject prefabsMonster;
+    public float spd = 1.0f;
 
-    float nowTime;
-    public float createTime = 1f;
+    public GameObject target;
+    public GameObject prefabsExplosion;
+
+    Vector3 direct = Vector3.down;
+
+    private void Start()
+    {
+        int rndMum = Random.Range(0, 10);
+        if (rndMum % 3 == 0)
+        {
+            direct = target.transform.position - transform.position;
+            direct.Normalize();
+        }
+    }
 
     void Update()
     {
-        nowTime = nowTime + Time.deltaTime;
+        transform.position = transform.position + direct * spd * Time.deltaTime;
+    }
 
-        if (nowTime > createTime)
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
         {
-            GameObject monster = Instantiate(prefabsMonster);
-            monster.transform.position = transform.position;
+            GameObject gameManager = GameObject.Find("GameManager");
+            ScoreManager scoreManager = gameManager.GetComponent<ScoreManager>();
+            scoreManager.nowScore++;
+            scoreManager.nowScoreUI.text = "Now Score : " + scoreManager.nowScore;
 
-            nowTime = 0;
+            if(scoreManager.nowScore > scoreManager.bestScore)
+            {
+                scoreManager.bestScore = scoreManager.nowScore;
+                scoreManager.bestScoreUI.text = "best Score : " + scoreManager.bestScore;
+
+                PlayerPrefs.SetInt("BestScore", scoreManager.bestScore);
+            }
+
+            GameObject explosionObj = Instantiate(prefabsExplosion);
+            explosionObj.transform.position = transform.position;
+
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
         }
+        Destroy(collision.gameObject);
+
+        Destroy(gameObject);
     }
 }

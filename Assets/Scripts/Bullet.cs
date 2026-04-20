@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         transform.Translate(Vector3.up * spd * Time.deltaTime);
     }
