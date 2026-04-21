@@ -12,6 +12,9 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
+        nowScore = PlayerPrefs.GetInt("NowScore", 0);
+        nowScoreUI.text = "Now Score : " + nowScore;
+
         bestScore = PlayerPrefs.GetInt("BestScore", 0);
         bestScoreUI.text = "Best Score : " + bestScore;
     }

@@ -5,28 +5,26 @@ using UnityEngine;
 public class MonsterManager : MonoBehaviour
 {
     public GameObject prefabsMonster;
-
     float nowTime;
-    float minTime = 1f;
-    float maxTime = 5f;
+    public float minTime = 1f;
+    public float maxTime = 5f;
+    float createTime;
 
-    public float createTime = 1f;
-
-    // Start is called before the first frame update
     void Start()
     {
         createTime = Random.Range(minTime, maxTime);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        nowTime = nowTime + Time.deltaTime;
+        nowTime += Time.deltaTime;
 
         if (nowTime > createTime)
         {
-            GameObject monster = Instantiate(prefabsMonster);
-            monster.transform.position = transform.position;
+            GameObject monster = Instantiate(prefabsMonster, transform.position, prefabsMonster.transform.rotation);
+
+            Monster monsterScript = monster.GetComponent<Monster>();
+            monsterScript.target = GameObject.Find("Character");
 
             nowTime = 0;
             createTime = Random.Range(minTime, maxTime);
