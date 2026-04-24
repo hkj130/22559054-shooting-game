@@ -395,6 +395,10 @@ PrefabInstance:
       propertyPath: bulletFireObject
       value: 
       objectReference: {fileID: 473924570}
+    - target: {fileID: 1899149825293772888, guid: 104225eb3c494a146b069bf12eb82824, type: 3}
+      propertyPath: spd
+      value: 3.64
+      objectReference: {fileID: 0}
     - target: {fileID: 1899149825293772889, guid: 104225eb3c494a146b069bf12eb82824, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -453,6 +457,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 484352331, guid: f94c6ea6a10ff194c870ca95c70bebad, type: 3}
+      propertyPath: spd
+      value: 3.72
+      objectReference: {fileID: 0}
     - target: {fileID: 484352331, guid: f94c6ea6a10ff194c870ca95c70bebad, type: 3}
       propertyPath: target
       value: 
@@ -534,7 +542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1420082138, guid: 636466d02a8c1f14eb095241ca3356aa, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8756432227614666520, guid: 636466d02a8c1f14eb095241ca3356aa, type: 3}
       propertyPath: m_Materials.Array.data[0]
